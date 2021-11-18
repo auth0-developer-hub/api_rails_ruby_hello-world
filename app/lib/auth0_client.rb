@@ -3,6 +3,15 @@
 class Auth0Client
   Error = Struct.new(:body, :status)
   Response = Struct.new(:decoded_token, :error)
+  Token = Struct.new(:token) do
+    def validate_permissions(permissions)
+      required_permissions = Set.new permissions
+      # JWT.decode returns an array like [payload, header]
+      token_permissions = Set.new token[0]['permissions']
+      # Returns true if required_permissions is a subset of token_permissions
+      required_permissions <= token_permissions
+    end
+  end
 
   SIGNING_KEY_UNAVAILABLE = [{
     error: 'signing_key_unavailable',
@@ -36,7 +45,7 @@ class Auth0Client
                                  verify_aud: true,
                                  jwks: { keys: jwks_hash[:keys] }
                                })
-    Response.new(decoded_token, nil)
+    Response.new(Token.new(decoded_token), nil)
   rescue JWT::VerificationError, JWT::DecodeError => e
     Response.new(
       nil,

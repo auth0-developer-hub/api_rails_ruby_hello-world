@@ -18,7 +18,9 @@ module Api
     end
 
     def admin
-      render json: { text: ADMIN_MESSAGE }
+      validate_permissions ['read:admin-messages'] do
+        render json: { text: ADMIN_MESSAGE }
+      end
     end
   end
 end
