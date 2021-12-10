@@ -1,3 +1,15 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  namespace :api do
+    resources :messages, only: [:index] do
+      collection do
+        get 'public'
+        get 'protected'
+        get 'admin'
+      end
+    end
+  end
+
+  get '/404' => 'errors#not_found'
 end

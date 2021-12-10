@@ -1,0 +1,22 @@
+require:
+  - rubocop-rails
+
+# Skip class documentation checks
+Style/Documentation:
+  Enabled: false
+
+# Skip method length checks (default is 10 lines)
+Metrics/MethodLength:
+  Enabled: false
+
+# Skip 'Assignment Branch Condition' size checks
+Metrics/AbcSize:
+  Enabled: false
+
+# Skip cyclomatic complexity checks
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
