@@ -20,6 +20,10 @@ Copy the `.env.example` file and paste it as `.env` under the root project direc
 cp .env.example .env
 ```
 
+Replace the example values with the ones found in your [Auth0 Dashboard](https://manage.auth0.com/):
+- `AUTH0_AUDIENCE`
+- `AUTH0_DOMAIN`
+
 > This project uses the [`dotenv` gem](https://github.com/bkeepers/dotenv) to load environment variables from a `.env` file into `ENV` in development.
 
 Run the project:
@@ -122,6 +126,63 @@ Status: Corresponding 400 status code
   "message": "Message that describes the error that took place."
 }
 ```
+
+**Request without authorization header**
+```bash
+curl localhost:6060/api/messages/admin
+```
+```json
+{"message":"Requires authentication"}
+```
+HTTP Status: `401`
+
+**Request with malformed authorization header**
+```bash
+curl localhost:6060/api/messages/admin --header "authorization: <valid_token>"
+```
+```json
+{
+  "error": "invalid_request",
+  "error_description": "Authorization header value must follow this format: Bearer access-token",
+  "message": "Requires authentication"
+}
+```
+HTTP Status: `401`
+
+**Request with wrong authorization scheme**
+```bash
+curl localhost:6060/api/messages/admin --header "authorization: Basic <valid_token>"
+```
+```json
+{"message":"Requires authentication"}
+```
+HTTP Status: `401`
+
+**Request without token**
+```bash
+curl localhost:6060/api/messages/admin --header "authorization: Bearer"
+```
+```json
+{
+  "error": "invalid_request",
+  "error_description": "Authorization header value must follow this format: Bearer access-token",
+  "message": "Requires authentication"
+}
+```
+HTTP Status: `401`
+
+**JWT validation error**
+```bash
+curl localhost:6060/api/messages/admin --header "authorization: Bearer asdf123"
+```
+```json
+{
+  "error":"invalid_token",
+  "error_description":"Not enough or too many segments",
+  "message":"Requires authentication"
+}
+```
+HTTP Status: `401`
 
 ### 500s errors
 

@@ -37,6 +37,7 @@ module ApiV1RailsRubyHelloWorld
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
+    config.auth0 = config_for(:auth0)
     config.api_only = true
     config.exceptions_app = routes
     config.action_dispatch.default_headers = {
