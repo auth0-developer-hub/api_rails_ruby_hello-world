@@ -5,21 +5,35 @@ module Api
   class MessagesController < BaseController
     before_action :authorize, except: %i[public]
 
-    PUBLIC_MESSAGE = 'The API doesn\'t require an access token to share this message.'
-    PROTECTED_MESSAGE = 'The API successfully validated your access token.'
-    ADMIN_MESSAGE = 'The API successfully recognized you as an admin.'
+    PUBLIC_MESSAGE = 'The secured API doesn\'t require an access token to share this public message.'
+    PROTECTED_MESSAGE = 'The secured API requires a valid access token to share this protected message.'
+    ADMIN_MESSAGE = 'The secured API requires a valid access token and the read:admin-messages permission to share this admin message.'
+    API_NAME = 'api_rails_ruby_hello-world'
+    API_BRANCH = 'basic-role-based-access-control'
 
     def public
-      render json: { text: PUBLIC_MESSAGE }
+      render json: {
+        text: PUBLIC_MESSAGE,
+        api: API_NAME,
+        branch: API_BRANCH
+      }
     end
 
     def protected
-      render json: { text: PROTECTED_MESSAGE }
+      render json: {
+        text: PROTECTED_MESSAGE,
+        api: API_NAME,
+        branch: API_BRANCH
+      }
     end
 
     def admin
       validate_permissions ['read:admin-messages'] do
-        render json: { text: ADMIN_MESSAGE }
+        render json: {
+          text: ADMIN_MESSAGE,
+          api: API_NAME,
+          branch: API_BRANCH
+        }
       end
     end
   end
