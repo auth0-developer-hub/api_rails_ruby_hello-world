@@ -63,9 +63,11 @@ Status: 200 OK
 
 ```json
 {
-  "text": "The starter API doesn't require an access token to share this public message.",
-  "api": "api_rails_ruby_hello-world",
-  "branch": "starter"
+  "text": "This is a public message.",
+  "metadata" : {
+    "api": "api_rails_ruby_hello-world",
+    "branch": "starter"
+  }
 }
 ```
 
@@ -85,9 +87,11 @@ Status: 200 OK
 
 ```json
 {
-  "text": "The starter API doesn't require an access token to share this protected message.",
-  "api": "api_rails_ruby_hello-world",
-  "branch": "starter"
+  "text": "This is a protected message.",
+  "metadata" : {
+    "api": "api_rails_ruby_hello-world",
+    "branch": "starter"
+  }
 }
 ```
 
@@ -107,9 +111,11 @@ Status: 200 OK
 
 ```json
 {
-  "text": "The starter API doesn't require an access token to share this admin message.",
-  "api": "api_rails_ruby_hello-world",
-  "branch": "starter"
+  "text": "This is an admin message.",
+  "metadata" : {
+    "api": "api_rails_ruby_hello-world",
+    "branch": "starter"
+  }
 }
 ```
 
