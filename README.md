@@ -22,6 +22,15 @@ cp .env.example .env
 
 > This project uses the [`dotenv` gem](https://github.com/bkeepers/dotenv) to load environment variables from a `.env` file into `ENV` in development.
 
+Run the following command to generate a random secret key and add it to your .env file.
+
+```
+bundle exec rake secret
+
+# .env
+SECRET_KEY_BASE=<generated_key>
+```
+
 Run the project:
 
 ```bash
