@@ -46,7 +46,7 @@ bundle exec rails s
 
 Rails comes with some defaults which needs to be overridden, please see the [documentation](https://edgeguides.rubyonrails.org/configuring.html#config-action-dispatch-default-headers) for more details.
 
-We need to set up the Content Security Policy on an [initializer](config/initializers/content_security_policy.rb), please see the [documentation](https://edgeguides.rubyonrails.org/security.html#content-security-policy) for more details
+We need to override the headers on each request like [this](app/controllers/api/base_controller.rb).
 
 ### Remove HTTP Headers
 
