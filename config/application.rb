@@ -39,13 +39,5 @@ module ApiV1RailsRubyHelloWorld
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
     config.exceptions_app = routes
-    config.action_dispatch.default_headers = {
-      'X-Frame-Options' => 'deny',
-      'X-XSS-Protection' => '0',
-      'Strict-Transport-Security' => 'max-age=31536000; includeSubDomains',
-      'X-Content-Type-Options' => 'nosniff',
-      'Cache-Control' => 'no-cache, no-store, max-age=0, must-revalidate',
-      'Pragma' => 'no-cache'
-    }
   end
 end
