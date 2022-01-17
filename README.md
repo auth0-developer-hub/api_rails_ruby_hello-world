@@ -44,11 +44,6 @@ Rails comes with some defaults which needs to be overridden, please see the [doc
 
 We need to override the headers on each request like [this](app/controllers/api/base_controller.rb).
 
-### Remove HTTP Headers
-
-  - `X-Powered-By`: Not added by Rails.
-  - `Server`: There is no easy way to remove this header since it's mostly the responsibility of the environment server. On development it doesn't matter, but on production its usually `NGINX`, `Apache`, etc. which handles this header.
-
 ### CORS
 Rails comes with CORS built-in, but needs to be enabled and [configured](config/initializers/cors.rb).
 
