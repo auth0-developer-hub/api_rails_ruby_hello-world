@@ -71,9 +71,11 @@ Status: 200 OK
 
 ```json
 {
-  "text": "The secured API doesn't require an access token to share this public message.",
-  "api": "api_rails_ruby_hello-world",
-  "branch": "basic-authorization"
+  "text": "This is a public message.",
+    "metadata" : {
+      "api": "api_rails_ruby_hello-world",
+      "branch": "basic-authorization"
+    }
 }
 ```
 
@@ -93,9 +95,11 @@ Status: 200 OK
 
 ```json
 {
-  "text": "The secured API requires a valid access token to share this protected message.",
-  "api": "api_rails_ruby_hello-world",
-  "branch": "basic-authorization"
+  "text": "This is a protected message.",
+    "metadata" : {
+      "api": "api_rails_ruby_hello-world",
+      "branch": "basic-authorization"
+    }
 }
 ```
 
@@ -115,9 +119,11 @@ Status: 200 OK
 
 ```json
 {
-  "text": "The secured API requires a valid access token to share this admin message.",
-  "api": "api_rails_ruby_hello-world",
-  "branch": "basic-authorization"
+  "text": "This is an admin message.",
+    "metadata" : {
+      "api": "api_rails_ruby_hello-world",
+      "branch": "basic-authorization"
+    }
 }
 ```
 
