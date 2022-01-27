@@ -24,7 +24,7 @@ module Api
     def api_response(message_hash)
       metadata = {
         api: 'api_rails_ruby_hello-world',
-        branch: 'starter'
+        branch: 'basic-role-based-access-control'
       }
       message_hash[:metadata] = metadata
       render json: message_hash
