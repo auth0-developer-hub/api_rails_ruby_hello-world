@@ -11,5 +11,5 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/404' => 'errors#not_found'
+  get '/404' => 'api/errors#not_found'
 end
