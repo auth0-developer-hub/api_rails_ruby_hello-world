@@ -26,6 +26,15 @@ Replace the example values with the ones found in your [Auth0 Dashboard](https:/
 
 > This project uses the [`dotenv` gem](https://github.com/bkeepers/dotenv) to load environment variables from a `.env` file into `ENV` in development.
 
+Run the following command to generate a random secret key and add it to your .env file.
+
+```
+bundle exec rake secret
+
+# .env
+SECRET_KEY_BASE=<generated_key>
+```
+
 Run the project:
 
 ```bash
@@ -37,12 +46,7 @@ bundle exec rails s
 
 Rails comes with some defaults which needs to be overridden, please see the [documentation](https://edgeguides.rubyonrails.org/configuring.html#config-action-dispatch-default-headers) for more details.
 
-We need to set up the Content Security Policy on an [initializer](config/initializers/content_security_policy.rb), please see the [documentation](https://edgeguides.rubyonrails.org/security.html#content-security-policy) for more details
-
-### Remove HTTP Headers
-
-  - `X-Powered-By`: Not added by Rails.
-  - `Server`: There is no easy way to remove this header since it's mostly the responsibility of the environment server. On development it doesn't matter, but on production its usually `NGINX`, `Apache`, etc. which handles this header.
+We need to override the headers on each request like [this](app/controllers/api/base_controller.rb).
 
 ### CORS
 Rails comes with CORS built-in, but needs to be enabled and [configured](config/initializers/cors.rb).
@@ -67,9 +71,11 @@ Status: 200 OK
 
 ```json
 {
-  "text": "The secured API doesn't require an access token to share this public message.",
-  "api": "api_rails_ruby_hello-world",
-  "branch": "basic-authorization"
+  "text": "This is a public message.",
+    "metadata" : {
+      "api": "api_rails_ruby_hello-world",
+      "branch": "basic-authorization"
+    }
 }
 ```
 
@@ -89,9 +95,11 @@ Status: 200 OK
 
 ```json
 {
-  "text": "The secured API requires a valid access token to share this protected message.",
-  "api": "api_rails_ruby_hello-world",
-  "branch": "basic-authorization"
+  "text": "This is a protected message.",
+    "metadata" : {
+      "api": "api_rails_ruby_hello-world",
+      "branch": "basic-authorization"
+    }
 }
 ```
 
@@ -111,9 +119,11 @@ Status: 200 OK
 
 ```json
 {
-  "text": "The secured API requires a valid access token to share this admin message.",
-  "api": "api_rails_ruby_hello-world",
-  "branch": "basic-authorization"
+  "text": "This is an admin message.",
+    "metadata" : {
+      "api": "api_rails_ruby_hello-world",
+      "branch": "basic-authorization"
+    }
 }
 ```
 

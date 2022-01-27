@@ -45,8 +45,9 @@ module ApiV1RailsRubyHelloWorld
       'X-XSS-Protection' => '0',
       'Strict-Transport-Security' => 'max-age=31536000; includeSubDomains',
       'X-Content-Type-Options' => 'nosniff',
-      'Cache-Control' => 'no-cache, no-store, max-age=0, must-revalidate',
-      'Pragma' => 'no-cache'
+      'Cache-Control' => 'no-store',
+      'Pragma' => 'no-cache',
+      'Content-Security-Policy' => "default-src 'self', frame-ancestors 'none'"
     }
   end
 end

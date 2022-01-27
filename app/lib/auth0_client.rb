@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'net/http'
+
 class Auth0Client
   Error = Struct.new(:body, :status)
   Response = Struct.new(:decoded_token, :error)
