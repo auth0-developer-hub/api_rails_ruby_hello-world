@@ -1,0 +1,7 @@
+development:
+  domain: <%= ENV.fetch('AUTH0_DOMAIN') %>
+  audience: <%= ENV.fetch('AUTH0_AUDIENCE') %>
+
+production:
+  domain: <%= ENV.fetch('AUTH0_DOMAIN') %>
+  audience: <%= ENV.fetch('AUTH0_AUDIENCE') %>

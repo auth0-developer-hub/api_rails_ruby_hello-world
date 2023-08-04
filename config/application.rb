@@ -20,7 +20,7 @@ require 'action_cable/engine'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module ApiRailsRubyHelloWorldCarla
+module ApiRailsRubyHelloWorld
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
@@ -39,6 +39,8 @@ module ApiRailsRubyHelloWorldCarla
     config.api_only = true
 
     config.exceptions_app = routes
+
+    config.auth0 = config_for(:auth0)
 
     config.action_dispatch.default_headers = {
       'X-Frame-Options' => 'deny',

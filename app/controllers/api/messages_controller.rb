@@ -2,6 +2,8 @@
 
 module Api
   class MessagesController < BaseController
+    before_action :authorize, except: [:public]
+
     def admin
       render json: Message.admin_message
     end
