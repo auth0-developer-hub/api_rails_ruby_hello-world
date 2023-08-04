@@ -8,6 +8,13 @@ class Auth0Client
   # Auth0 Client Objects
   Error = Struct.new(:message, :status)
   Response = Struct.new(:decoded_token, :error)
+  Token = Struct.new(:token) do
+    def validate_permissions(permissions)
+      required_permissions = Set.new permissions
+      token_permissions = Set.new token[0]['permissions']
+      required_permissions <= token_permissions
+    end
+  end
 
   # Helper Functions
   def self.domain_url
@@ -43,7 +50,7 @@ class Auth0Client
 
     decoded_token = decode_token(token, jwks_hash)
 
-    Response.new(decoded_token, nil)
+    Response.new(Token.new(decoded_token), nil)
   rescue JWT::VerificationError, JWT::DecodeError => e
     error = Error.new('Bad credentials', :unauthorized)
     Response.new(nil, error)

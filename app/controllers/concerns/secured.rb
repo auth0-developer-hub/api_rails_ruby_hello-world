@@ -12,6 +12,11 @@ module Secured
     error_description: 'Authorization header value must follow this format: Bearer access-token',
     message: 'Bad credentials'
   }.freeze
+  INSUFFICIENT_PERMISSIONS = {
+    error: 'insufficient_permissions',
+    error_description: 'The access token does not contain the required permissions',
+    message: 'Permission denied'
+  }.freeze
 
   def authorize
     token = token_from_request
@@ -20,9 +25,18 @@ module Secured
 
     validation_response = Auth0Client.validate_token(token)
 
+    @decoded_token = validation_response.decoded_token
+
     return unless (error = validation_response.error)
 
-    render json: {message: error.message}, status: error.status
+    render json: { message: error.message }, status: error.status
+  end
+
+  def validate_permissions(permissions)
+    raise 'validate_permissions needs to be called with a block' unless block_given?
+    return yield if @decoded_token.validate_permissions(permissions)
+
+    render json: INSUFFICIENT_PERMISSIONS, status: :forbidden
   end
 
   private

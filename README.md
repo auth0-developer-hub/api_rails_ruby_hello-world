@@ -1,10 +1,10 @@
-# Rails/Ruby: API Basic Access Control Code Sample
+# Rails/Ruby: API Basic Role-Based Access Control (RBAC) Code Sample
 
-This Ruby code sample demonstrates **how to implement authorization** in Rails API servers using Auth0.
+This Ruby code sample demonstrates **how to implement Role-Based Access Control (RBAC)** in Rails API servers using Auth0.
 
 This code sample is part of the ["Auth0 Developer Resources"](https://developer.auth0.com/resources), a place where you can explore the authentication and authorization features of the Auth0 Identity Platform.
 
-Visit the ["Rails/Ruby Code Sample: Authorization For Basic APIs"](https://developer.auth0.com/resources/code-samples/api/rails/basic-authorization) page for instructions on how to configure and run this code sample and how to integrate it with a Single-Page Application (SPA) of your choice.
+Visit the ["Rails/Ruby Code Sample: Role-Based Access Control For Basic APIs"](https://developer.auth0.com/resources/code-samples/api/rails/basic-role-based-access-control) page for instructions on how to configure and run this code sample and how to integrate it with a Single-Page Application (SPA) of your choice.
 
 ## Why Use Auth0?
 

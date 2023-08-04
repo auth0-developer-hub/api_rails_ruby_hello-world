@@ -5,7 +5,9 @@ module Api
     before_action :authorize, except: [:public]
 
     def admin
-      render json: Message.admin_message
+      validate_permissions ['read:admin-messages'] do
+        render json: Message.admin_message
+      end
     end
 
     def protected
