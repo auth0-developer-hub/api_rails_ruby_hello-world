@@ -32,4 +32,4 @@ group :development do
   gem 'dotenv-rails'
 end
 
-gem 'jwt', '~> 2.5'
+gem 'jwt', '~> 2.10'
